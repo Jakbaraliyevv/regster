@@ -222,10 +222,9 @@ const DigitalGirlsSanctuary = () => {
                   isMobile ? "text-sm px-2" : "text-[16px]"
                 }`}
               >
-                Bu tanlov qizlarimizga zamonaviy bilimlar, sun'iy intellekt,
-                yashil iqtisodiyot va iqlim o'zgarishi kabi dolzarb
-                yo'nalishlarda o'z salohiyatini namoyish etish imkoniyatini
-                beradi.
+                Bu tanlov qizlarimizga ta'lim, sun'iy intellekt, yashil
+                iqtisodiyot va iqlim o'zgarishi kabi dolzarb yo'nalishlarda o'z
+                salohiyatini namoyish etish imkoniyatini beradi.
               </p>
             </div>
 
