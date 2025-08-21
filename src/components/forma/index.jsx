@@ -311,6 +311,27 @@ const DavlatXizmatlariForm = () => {
             </div>
           </div>
 
+          {/* Qolgan qismlar (o'zgarmagan) */}
+          <div className="border-t border-gray-200 pt-4 sm:pt-6">
+            <div className="mb-3 sm:mb-4">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+                Loyiha haqida
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                Loyiha haqida qisqacha tafsilot...
+              </p>
+            </div>
+
+            <textarea
+              name="about"
+              value={formData.about}
+              onChange={handleChange}
+              rows={4}
+              className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Qisqacha izoh yozing..."
+            ></textarea>
+          </div>
+
           {/* Fayl yuklash qismi - TO'G'RILANDI */}
           <div className="flex items-center justify-between gap-4">
             <div className="border-t border-gray-200 pt-4 sm:pt-6 w-[100%]">
@@ -400,28 +421,6 @@ const DavlatXizmatlariForm = () => {
                 )}
               </div>
             </div>
-          </div>
-
-          {/* Qolgan qismlar (o'zgarmagan) */}
-          <div className="border-t border-gray-200 pt-4 sm:pt-6">
-            <div className="mb-3 sm:mb-4">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
-                Nima uchun sizni tanlashimiz kerak?
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                O'zingiz haqingizda va nima uchun aynan sizni tanlashimiz kerak
-                degan savolga javob bering...
-              </p>
-            </div>
-
-            <textarea
-              name="about"
-              value={formData.about}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Qisqacha izoh yozing..."
-            ></textarea>
           </div>
 
           <div className="pt-3 sm:pt-4">
