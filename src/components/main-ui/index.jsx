@@ -444,10 +444,10 @@ const DigitalGirlsSanctuary = () => {
                           {videos[activeVideo].title}
                         </h4>
                         <div className="flex items-center justify-between text-sm text-gray-300">
-                          <span className="flex items-center gap-1">
+                          {/* <span className="flex items-center gap-1">
                             <Eye className="w-4 h-4" />
                             {videos[activeVideo].views}
-                          </span>
+                          </span> */}
                           <span>{videos[activeVideo].duration}</span>
                         </div>
                       </div>
@@ -495,14 +495,14 @@ const DigitalGirlsSanctuary = () => {
                         </div>
 
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-                          <h5 className="text-white text-xs font-medium truncate">
+                          {/* <h5 className="text-white text-xs font-medium truncate">
                             {video.title}
-                          </h5>
+                          </h5> */}
                           <div className="flex items-center justify-between text-xs text-gray-300 mt-1">
-                            <span className="flex items-center gap-1">
+                            {/* <span className="flex items-center gap-1">
                               <Eye className="w-2 h-2" />
                               {video.views}
-                            </span>
+                            </span> */}
                             <span>{video.duration}</span>
                           </div>
                         </div>
@@ -519,6 +519,9 @@ const DigitalGirlsSanctuary = () => {
                           }}
                         ></div>
                       </div>
+                      <h2 className="text-[#ae92c8] font-medium text-[14px] mt-2">
+                        {video.title}
+                      </h2>
 
                       <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-lg">
                         {index + 2}
