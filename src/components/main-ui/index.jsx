@@ -225,7 +225,7 @@ const DigitalGirlsSanctuary = () => {
             <div className="text-center mt-[40px]">
               <div className="relative group inline-block">
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-all duration-500"></div>
-                <Link to={"/forma"}>
+                <Link to={"/confirim"}>
                   <button
                     className={`relative ${
                       isMobile ? "px-6 py-3 text-base" : "px-8 py-4 text-lg"
