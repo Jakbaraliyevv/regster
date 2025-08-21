@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAxios } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const PhoneVerification = ({ onVerificationSuccess }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -11,8 +12,7 @@ const PhoneVerification = ({ onVerificationSuccess }) => {
   const [telegramInfo, setTelegramInfo] = useState("");
 
   const axios = useAxios();
-
-  // Hisoblagichni boshqarish
+  const navigate = useNavigate();
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
@@ -20,78 +20,72 @@ const PhoneVerification = ({ onVerificationSuccess }) => {
     }
   }, [countdown]);
 
-  // Telefon raqamni tasdiqlash kodi yuborish
   const sendVerificationCode = async () => {
-    if (!phoneNumber || phoneNumber.length !== 9) {
-      setError("Iltimos, to'g'ri telefon raqam kiriting");
-      return;
-    }
+    setIsCodeSent(true); // shu orqtcha
 
-    setLoading(true);
-    setError("");
-    setTelegramInfo("");
+    // if (!phoneNumber || phoneNumber.length !== 9) {
+    //   setError("Iltimos, to'g'ri telefon raqam kiriting");
+    //   return;
+    // }
 
-    try {
-      // APIga telefon raqamni yuborish
-      const response = await axios({
-        url: "/send-code/",
-        method: "POST",
-        data: {
-          phone_number: `+998${phoneNumber}`,
-        },
-      });
+    // setLoading(true);
+    // setError("");
+    // setTelegramInfo("");
 
-      console.log("Tasdiqlash kodi yuborildi:", response.data);
+    // try {
+    //   const response = await axios({
+    //     url: "/send-code/",
+    //     method: "POST",
+    //     data: {
+    //       phone_number: `+998${phoneNumber}`,
+    //     },
+    //   });
 
-      // Telegram bot orqali kod yuborilganligi haqida ma'lumot
-      setTelegramInfo(
-        "Tasdiqlash kodi Telegram botingizga yuborildi: @qizlar_raqamliavlod_bot"
-      );
+    //   console.log("Tasdiqlash kodi yuborildi:", response.data);
 
-      // Kod yuborilganini belgilash
-      setIsCodeSent(true);
-      setCountdown(60); // 60 soniyalik hisoblagich
-    } catch (err) {
-      console.error("Xatolik yuz berdi:", err);
-      setError(
-        err.response?.data?.message || "Kod yuborishda xatolik yuz berdi"
-      );
-    } finally {
-      setLoading(false);
-    }
+    //   setTelegramInfo(
+    //     "Tasdiqlash kodi Telegram botingizga yuborildi: @qizlar_raqamliavlod_bot"
+    //   );
+
+    //   setIsCodeSent(true);
+    //   setCountdown(60);
+    // } catch (err) {
+    //   console.error("Xatolik yuz berdi:", err);
+    //   setError(
+    //     err.response?.data?.message || "Kod yuborishda xatolik yuz berdi"
+    //   );
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
-  // Tasdiqlash kodini tekshirish
   const verifyCode = async () => {
-    if (verificationCode.length !== 6) {
-      setError("Tasdiqlash kodi 6 raqamdan iborat bo'lishi kerak");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-
-    try {
-      // APIga tasdiqlash kodini yuborish
-      const response = await axios({
-        url: "/check-code/",
-        method: "POST",
-        data: {
-          phone_number: `+998${phoneNumber}`,
-          code: verificationCode,
-        },
-      });
-
-      console.log("Kod tasdiqlandi:", response.data);
-      onVerificationSuccess(phoneNumber);
-    } catch (err) {
-      console.error("Xatolik yuz berdi:", err);
-      setError(
-        err.response?.data?.message || "Kod noto'g'ri yoki muddati o'tgan"
-      );
-    } finally {
-      setLoading(false);
-    }
+    navigate("/forma");
+    // if (verificationCode.length !== 6) {
+    //   setError("Tasdiqlash kodi 6 raqamdan iborat bo'lishi kerak");
+    //   return;
+    // }
+    // setLoading(true);
+    // setError("");
+    // try {
+    //   const response = await axios({
+    //     url: "/check-code/",
+    //     method: "POST",
+    //     data: {
+    //       phone_number: `+998${phoneNumber}`,
+    //       code: verificationCode,
+    //     },
+    //   });
+    //   console.log("Kod tasdiqlandi:", response.data);
+    //   onVerificationSuccess(phoneNumber);
+    // } catch (err) {
+    //   console.error("Xatolik yuz berdi:", err);
+    //   setError(
+    //     err.response?.data?.message || "Kod noto'g'ri yoki muddati o'tgan"
+    //   );
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -108,7 +102,6 @@ const PhoneVerification = ({ onVerificationSuccess }) => {
         </div>
 
         <div className="space-y-4 w-full px-4 md:px-0 md:w-4/5 lg:w-3/4">
-          {/* Telefon raqami kiritish */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Telefon raqami

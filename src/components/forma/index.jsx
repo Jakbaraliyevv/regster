@@ -4,6 +4,7 @@ import { Upload, User, Book, FileText, Send, ChevronDown } from "lucide-react";
 import provinces from "../data/provinces.json";
 import districts from "../data/districts.json";
 import { useAxios } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const DavlatXizmatlariForm = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const DavlatXizmatlariForm = () => {
   const [recommendationFileName, setRecommendationFileName] = useState("");
   const [isProvinceOpen, setIsProvinceOpen] = useState(false);
   const [isDistrictOpen, setIsDistrictOpen] = useState(false);
+  const navigate = useNavigate();
   const axios = useAxios();
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;

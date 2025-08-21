@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../../public/logo.png";
+
+import hero1 from "../../../public/heromage1.png";
+import hero2 from "../../../public/heromage2.png";
+import hero3 from "../../../public/heromage3.png";
+import hero4 from "../../../public/heromage4.png";
+import hero5 from "../../../public/heromage5.png";
 
 import {
   Play,
