@@ -333,7 +333,7 @@ const DavlatXizmatlariForm = () => {
           </div>
 
           {/* Fayl yuklash qismi - TO'G'RILANDI */}
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-start justify-between gap-4">
             <div className="border-t border-gray-200 pt-4 sm:pt-6 w-[100%]">
               <div className="flex items-center mb-3 sm:mb-4">
                 <div className="bg-yellow-100 p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
@@ -392,7 +392,7 @@ const DavlatXizmatlariForm = () => {
                   <Upload className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                  Tavsiyanoma faylini yuklang (PDF, DOC)
+                  Mavjud bo'lsa faylini yuklang
                 </label>
                 <p className="text-xs text-gray-500 mb-3 sm:mb-4">
                   Maksimal hajm: 10MB
