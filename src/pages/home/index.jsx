@@ -1,4 +1,4 @@
-import DigitalGirlsSanctuary from "../../components/navbar";
+import DigitalGirlsSanctuary from "../../components/main-ui";
 
 function Home() {
   return (
