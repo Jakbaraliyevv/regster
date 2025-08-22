@@ -178,12 +178,19 @@ const DigitalGirlsSanctuary = () => {
               style={{ animationDelay: "2s" }}
             ></div>
           </div>
-
+          {/* logo2 */}
+          <div className="ml-9 max-[768px]:flex max-[768px]:items-center max-[768px]:justify-center max-[768px]:ml-0">
+            <Link to={"/"}>
+              <img src={logo} className="w-[180px] h-auto" alt="" />
+            </Link>
+          </div>
           <div
-            className={`relative h-full flex flex-col justify-center ${
+            className={`relative h- flex flex-col justify-center ${
               isMobile ? "p-6 py-8" : "p-12"
             }`}
           >
+            {/* logo image */}
+
             <div className="text-center mb-12">
               <h1
                 className={`${
@@ -240,7 +247,7 @@ const DigitalGirlsSanctuary = () => {
                     <Sparkles
                       className={`${isMobile ? "w-5 h-5" : "w-6 h-6"}`}
                     />
-                    REGISTER
+                    Ro'yxatdan o'tish
                     <ArrowRight
                       className={`${
                         isMobile ? "w-5 h-5" : "w-6 h-6"

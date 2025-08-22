@@ -91,7 +91,7 @@ const SimpleImageSwiper = () => {
   };
 
   return (
-    <div className="w-full  mx-auto p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-3xl shadow-2xl">
+    <div className="w-[100%]  mx-auto p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-3xl shadow-2xl">
       {/* Swiper Container */}
       <div className="relative">
         {/* Main Image Display */}
