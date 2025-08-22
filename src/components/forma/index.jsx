@@ -332,7 +332,6 @@ const DavlatXizmatlariForm = () => {
             ></textarea>
           </div>
 
-          {/* Fayl yuklash qismi - TO'G'RILANDI */}
           <div className="flex items-start justify-between gap-4">
             <div className="border-t border-gray-200 pt-4 sm:pt-6 w-[100%]">
               <div className="flex items-center mb-3 sm:mb-4">

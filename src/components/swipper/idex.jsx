@@ -103,7 +103,6 @@ const SimpleImageSwiper = () => {
   const intervalRef = useRef(null);
   const authorIntervalRef = useRef(null);
 
-  // Intersection Observer for scroll-based typing
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
