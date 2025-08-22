@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SimpleImageSwiper = () => {
@@ -27,7 +27,6 @@ const SimpleImageSwiper = () => {
       src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop",
       alt: "Image 4",
     },
-
     {
       id: 6,
       src: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&h=300&fit=crop",
@@ -90,8 +89,96 @@ const SimpleImageSwiper = () => {
     return visibleImages;
   };
 
+  const fullText =
+    "aAgar bir erkakni o'qitsangiz – bir insonni o'qitgansiz, agar bir ayolni o'qitsangiz – butun bir oilani, jamiyatni o'qitgansiz";
+  const author = " Mahmudxo'ja Behbudiy";
+
+  const [text, setText] = useState("");
+  const [authorText, setAuthorText] = useState("");
+  const [showAuthor, setShowAuthor] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  const textRef = useRef(null);
+
+  // Intersection Observer for scroll-based typing
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+          startTyping();
+        }
+      },
+      {
+        threshold: 0.3, // 30% ko'rinishda boshlash
+        rootMargin: "0px",
+      }
+    );
+
+    if (textRef.current) {
+      observer.observe(textRef.current);
+    }
+
+    return () => {
+      if (textRef.current) {
+        observer.unobserve(textRef.current);
+      }
+    };
+  }, [hasStarted]);
+
+  const startTyping = () => {
+    setText("");
+    setAuthorText("");
+    setShowAuthor(false);
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setText((prev) => prev + fullText.charAt(index));
+      index++;
+      if (index === fullText.length) {
+        clearInterval(interval);
+        setTimeout(() => setShowAuthor(true), 800);
+      }
+    }, 50);
+  };
+
+  // Author typing effect
+  useEffect(() => {
+    if (showAuthor && typeof author === "string") {
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < author.length - 1) {
+          setAuthorText((prev) => prev + author[index]);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 80);
+
+      return () => clearInterval(interval);
+    }
+  }, [showAuthor, author]);
+
   return (
-    <div className="w-[100%]  mx-auto p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-3xl shadow-2xl">
+    <div className="w-[100%] mx-auto p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-3xl shadow-2xl">
+      <div className="flex items-center justify-center" ref={textRef}>
+        <div className="text-[#000] w-[50%] text-[20px] flex flex-col gap-4">
+          <p className="text-center font-medium font-serif italic leading-relaxed">
+            {text}
+            {text && text.length < fullText.length && (
+              <span className="inline-block w-0.5 h-6 bg-gray-600 ml-1 animate-pulse"></span>
+            )}
+          </p>
+
+          <h4 className="text-[17px] font-bold font-serif text-end mt-2">
+            {authorText}
+            {showAuthor && authorText.length < author.length && (
+              <span className="inline-block w-0.5 h-5 bg-gray-600 ml-1 animate-pulse"></span>
+            )}
+          </h4>
+        </div>
+      </div>
+
       {/* Swiper Container */}
       <div className="relative">
         {/* Main Image Display */}

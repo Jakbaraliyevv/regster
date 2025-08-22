@@ -225,8 +225,8 @@ const DigitalGirlsSanctuary = () => {
 
             <div className="flex flex-col gap-[25px]">
               <p
-                className={`text-center text-[#3699de] font-medium ${
-                  isMobile ? "text-sm px-2" : "text-[16px]"
+                className={`text-center text-[#3699de] font-medium font-serif italic leading-relaxed ${
+                  isMobile ? "text-sm px-2" : "text-[19px]"
                 }`}
               >
                 Bu tanlov qizlarimizga ta'lim, sun'iy intellekt, yashil
