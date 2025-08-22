@@ -160,20 +160,23 @@ const SimpleImageSwiper = () => {
   }, [showAuthor, author]);
 
   return (
-    <div className="w-[100%] mx-auto p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-3xl shadow-2xl">
-      <div className="flex items-center justify-center" ref={textRef}>
-        <div className="text-[#000] w-[50%] text-[20px] flex flex-col gap-4">
-          <p className="text-center font-medium font-serif italic leading-relaxed">
+    <div className="w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl">
+      <div
+        className="flex items-center justify-center px-4 sm:px-6 lg:px-0"
+        ref={textRef}
+      >
+        <div className="text-[#000] w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] text-sm sm:text-base md:text-lg lg:text-xl flex flex-col gap-3 sm:gap-4">
+          <p className="text-center font-medium font-serif italic leading-relaxed px-2 sm:px-0">
             {text}
             {text && text.length < fullText.length && (
-              <span className="inline-block w-0.5 h-6 bg-gray-600 ml-1 animate-pulse"></span>
+              <span className="inline-block w-0.5 h-4 sm:h-5 md:h-6 bg-gray-600 ml-1 animate-pulse"></span>
             )}
           </p>
 
-          <h4 className="text-[17px] font-bold font-serif text-end mt-2">
+          <h4 className="text-sm sm:text-base md:text-lg font-bold font-serif text-end mt-2 px-2 sm:px-0">
             {authorText}
             {showAuthor && authorText.length < author.length && (
-              <span className="inline-block w-0.5 h-5 bg-gray-600 ml-1 animate-pulse"></span>
+              <span className="inline-block w-0.5 h-4 sm:h-5 bg-gray-600 ml-1 animate-pulse"></span>
             )}
           </h4>
         </div>
@@ -182,7 +185,7 @@ const SimpleImageSwiper = () => {
       {/* Swiper Container */}
       <div className="relative">
         {/* Main Image Display */}
-        <div className="relative h-96 overflow-hidden rounded-2xl mb-6">
+        <div className="relative h-60 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-xl sm:rounded-2xl mb-4 sm:mb-6">
           <div className="flex items-center justify-center h-full">
             {getVisibleImages().map((image) => (
               <div
@@ -199,7 +202,7 @@ const SimpleImageSwiper = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-80 h-60 object-cover rounded-2xl shadow-2xl group-hover:shadow-3xl transition-all duration-500"
+                    className="w-56 sm:w-64 md:w-72 lg:w-80 h-40 sm:h-48 md:h-52 lg:h-60 object-cover rounded-xl sm:rounded-2xl shadow-2xl group-hover:shadow-3xl transition-all duration-500"
                   />
 
                   {/* Overlay effect */}
@@ -215,60 +218,60 @@ const SimpleImageSwiper = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-40"
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-800 p-2 sm:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-40"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-40"
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-800 p-2 sm:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-40"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
           </button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center space-x-3 mb-4">
+        <div className="flex justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === currentIndex
-                  ? "w-12 h-3 bg-gradient-to-r from-purple-500 to-pink-500"
-                  : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
+                  ? "w-8 sm:w-10 md:w-12 h-2 sm:h-3 bg-gradient-to-r from-purple-500 to-pink-500"
+                  : "w-2 sm:w-3 h-2 sm:h-3 bg-gray-300 hover:bg-gray-400"
               }`}
             />
           ))}
         </div>
 
         {/* Thumbnails */}
-        <div className="flex justify-center space-x-2 overflow-x-auto pb-2">
+        <div className="flex justify-center space-x-1 sm:space-x-2 overflow-x-auto pb-2 px-2">
           {images.map((image, index) => (
             <button
               key={image.id}
               onClick={() => goToSlide(index)}
               className={`flex-shrink-0 transition-all duration-300 ${
                 index === currentIndex
-                  ? "ring-4 ring-purple-500 scale-110"
+                  ? "ring-2 sm:ring-4 ring-purple-500 scale-105 sm:scale-110"
                   : "ring-2 ring-transparent hover:ring-purple-300"
               }`}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-16 h-12 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="w-12 sm:w-14 md:w-16 h-9 sm:h-10 md:h-12 object-cover rounded-md sm:rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </button>
           ))}
         </div>
 
         {/* Auto-play Control */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-4 sm:mt-6">
           <button
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
               isAutoPlaying
                 ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:shadow-xl"
                 : "bg-gray-200 text-gray-600 hover:bg-gray-300"
