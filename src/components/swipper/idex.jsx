@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import hero1 from "../../../public/heromage1.png";
+import hero2 from "../../../public/heromage2.png";
+import hero3 from "../../../public/heromage3.png";
+import hero4 from "../../../public/heromage4.png";
+import hero5 from "../../../public/heromage5.png";
 const SimpleImageSwiper = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -9,48 +13,31 @@ const SimpleImageSwiper = () => {
   const images = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
+      src: hero1,
       alt: "Image 1",
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop",
+      src: hero2,
+
       alt: "Image 2",
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=300&fit=crop",
+      src: hero3,
+
       alt: "Image 3",
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop",
+      src: hero4,
+
       alt: "Image 4",
     },
     {
       id: 6,
-      src: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&h=300&fit=crop",
+      src: hero5,
       alt: "Image 6",
-    },
-    {
-      id: 7,
-      src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop",
-      alt: "Image 7",
-    },
-    {
-      id: 8,
-      src: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop",
-      alt: "Image 8",
-    },
-    {
-      id: 9,
-      src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop",
-      alt: "Image 9",
-    },
-    {
-      id: 10,
-      src: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=300&fit=crop",
-      alt: "Image 10",
     },
   ];
 
@@ -98,7 +85,7 @@ const SimpleImageSwiper = () => {
   const [showAuthor, setShowAuthor] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  
+
   const textRef = useRef(null);
   const intervalRef = useRef(null);
   const authorIntervalRef = useRef(null);
@@ -114,7 +101,7 @@ const SimpleImageSwiper = () => {
       },
       {
         threshold: 0.3,
-        rootMargin: '0px'
+        rootMargin: "0px",
       }
     );
 
@@ -136,14 +123,14 @@ const SimpleImageSwiper = () => {
     // Clear any existing intervals
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (authorIntervalRef.current) clearInterval(authorIntervalRef.current);
-    
+
     setText("");
     setAuthorText("");
     setShowAuthor(false);
 
     let displayText = "";
     let index = 0;
-    
+
     intervalRef.current = setInterval(() => {
       if (index < fullText.length) {
         displayText += fullText[index];
@@ -153,11 +140,11 @@ const SimpleImageSwiper = () => {
         clearInterval(intervalRef.current);
         setTimeout(() => {
           setShowAuthor(true);
-          
+
           // Author typing
           let authorDisplay = "";
           let authorIndex = 0;
-          
+
           authorIntervalRef.current = setInterval(() => {
             if (authorIndex < author.length) {
               authorDisplay += author[authorIndex];
@@ -177,7 +164,10 @@ const SimpleImageSwiper = () => {
 
   return (
     <div className="w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl">
-      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-0" ref={textRef}>
+      <div
+        className="flex items-center justify-center px-4 sm:px-6 lg:px-0"
+        ref={textRef}
+      >
         <div className="text-[#000] w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] text-sm sm:text-base md:text-lg lg:text-xl flex flex-col gap-3 sm:gap-4">
           <p className="text-center font-medium font-serif italic leading-relaxed px-2 sm:px-0">
             {text}
