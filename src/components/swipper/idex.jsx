@@ -90,14 +90,14 @@ const SimpleImageSwiper = () => {
   };
 
   const fullText =
-    "aAgar bir erkakni o'qitsangiz – bir insonni o'qitgansiz, agar bir ayolni o'qitsangiz – butun bir oilani, jamiyatni o'qitgansiz";
-  const author = " Mahmudxo'ja Behbudiy";
+    "Agar bir erkakni o'qitsangiz – bir insonni o'qitgansiz, agar bir ayolni o'qitsangiz – butun bir oilani, jamiyatni o'qitgansiz";
+  const author = "Mahmudxoja Behbudiy";
 
   const [text, setText] = useState("");
   const [authorText, setAuthorText] = useState("");
   const [showAuthor, setShowAuthor] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
-
+  
   const textRef = useRef(null);
 
   // Intersection Observer for scroll-based typing
@@ -111,7 +111,7 @@ const SimpleImageSwiper = () => {
       },
       {
         threshold: 0.3, // 30% ko'rinishda boshlash
-        rootMargin: "0px",
+        rootMargin: '0px'
       }
     );
 
@@ -131,11 +131,15 @@ const SimpleImageSwiper = () => {
     setAuthorText("");
     setShowAuthor(false);
 
+    let currentText = "";
     let index = 0;
+    
     const interval = setInterval(() => {
-      setText((prev) => prev + fullText.charAt(index));
-      index++;
-      if (index === fullText.length) {
+      if (index < fullText.length) {
+        currentText += fullText[index];
+        setText(currentText);
+        index++;
+      } else {
         clearInterval(interval);
         setTimeout(() => setShowAuthor(true), 800);
       }
@@ -145,10 +149,13 @@ const SimpleImageSwiper = () => {
   // Author typing effect
   useEffect(() => {
     if (showAuthor && typeof author === "string") {
+      let currentAuthorText = "";
       let index = 0;
+      
       const interval = setInterval(() => {
-        if (index < author.length - 1) {
-          setAuthorText((prev) => prev + author[index]);
+        if (index < author.length) {
+          currentAuthorText += author[index];
+          setAuthorText(currentAuthorText);
           index++;
         } else {
           clearInterval(interval);
@@ -161,10 +168,7 @@ const SimpleImageSwiper = () => {
 
   return (
     <div className="w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl">
-      <div
-        className="flex items-center justify-center px-4 sm:px-6 lg:px-0"
-        ref={textRef}
-      >
+      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-0" ref={textRef}>
         <div className="text-[#000] w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] text-sm sm:text-base md:text-lg lg:text-xl flex flex-col gap-3 sm:gap-4">
           <p className="text-center font-medium font-serif italic leading-relaxed px-2 sm:px-0">
             {text}
