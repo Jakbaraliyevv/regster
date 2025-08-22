@@ -97,20 +97,24 @@ const SimpleImageSwiper = () => {
   const [authorText, setAuthorText] = useState("");
   const [showAuthor, setShowAuthor] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   
   const textRef = useRef(null);
+  const intervalRef = useRef(null);
+  const authorIntervalRef = useRef(null);
 
   // Intersection Observer for scroll-based typing
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
+        if (entry.isIntersecting && !hasStarted && !isTyping) {
           setHasStarted(true);
+          setIsTyping(true);
           startTyping();
         }
       },
       {
-        threshold: 0.3, // 30% ko'rinishda boshlash
+        threshold: 0.3,
         rootMargin: '0px'
       }
     );
@@ -123,48 +127,54 @@ const SimpleImageSwiper = () => {
       if (textRef.current) {
         observer.unobserve(textRef.current);
       }
+      // Clear intervals on cleanup
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (authorIntervalRef.current) clearInterval(authorIntervalRef.current);
     };
-  }, [hasStarted]);
+  }, [hasStarted, isTyping]);
 
   const startTyping = () => {
+    // Clear any existing intervals
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (authorIntervalRef.current) clearInterval(authorIntervalRef.current);
+    
     setText("");
     setAuthorText("");
     setShowAuthor(false);
 
-    let currentText = "";
+    let displayText = "";
     let index = 0;
     
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       if (index < fullText.length) {
-        currentText += fullText[index];
-        setText(currentText);
+        displayText += fullText[index];
+        setText(displayText);
         index++;
       } else {
-        clearInterval(interval);
-        setTimeout(() => setShowAuthor(true), 800);
+        clearInterval(intervalRef.current);
+        setTimeout(() => {
+          setShowAuthor(true);
+          
+          // Author typing
+          let authorDisplay = "";
+          let authorIndex = 0;
+          
+          authorIntervalRef.current = setInterval(() => {
+            if (authorIndex < author.length) {
+              authorDisplay += author[authorIndex];
+              setAuthorText(authorDisplay);
+              authorIndex++;
+            } else {
+              clearInterval(authorIntervalRef.current);
+              setIsTyping(false); // Typing completed
+            }
+          }, 80);
+        }, 800);
       }
     }, 50);
   };
 
-  // Author typing effect
-  useEffect(() => {
-    if (showAuthor && typeof author === "string") {
-      let currentAuthorText = "";
-      let index = 0;
-      
-      const interval = setInterval(() => {
-        if (index < author.length) {
-          currentAuthorText += author[index];
-          setAuthorText(currentAuthorText);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 80);
-
-      return () => clearInterval(interval);
-    }
-  }, [showAuthor, author]);
+  // Remove the separate author useEffect since it's now handled in startTyping
 
   return (
     <div className="w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl">
