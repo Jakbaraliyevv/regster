@@ -7,3 +7,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, white 80%, #6dd9ed 100%);
+}
+
+@media (max-width: 768px) {
+  .bg {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(-45deg, white 50%, #6dd9ed 100%);
+  }
+}
+/* 64ddee */
+/* 6dd9ed */

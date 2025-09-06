@@ -163,7 +163,7 @@ const SimpleImageSwiper = () => {
   // Remove the separate author useEffect since it's now handled in startTyping
 
   return (
-    <div className="w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl">
+    <div className=" w-full mx-auto p-3 sm:p-4 md:p-6 bg-gradient-to-br from-indigo-40 to-purple-100 rounded-xl sm:rounded-2xl md:rounded-3xl">
       <div
         className="flex items-center justify-center px-4 sm:px-6 lg:px-0"
         ref={textRef}
@@ -486,9 +486,6 @@ export default SimpleImageSwiper;
 // };
 
 // export default SimpleImageSwiper;
-
-
-
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { ChevronLeft, ChevronRight } from "lucide-react";

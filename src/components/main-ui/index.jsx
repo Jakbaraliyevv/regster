@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../public/logo.png";
 
-import hero1 from "../../../public/heromage1.png";
-import hero2 from "../../../public/heromage2.png";
-import hero3 from "../../../public/heromage3.png";
-import hero4 from "../../../public/heromage4.png";
-import hero5 from "../../../public/heromage5.png";
+import bg from "../../../public/bg.jpg";
+import hero5 from "../../../public/banner56.jpg";
 
 import {
   Play,
@@ -16,6 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { div } from "three/tsl";
 
 const DigitalGirlsSanctuary = () => {
   const [activeVideo, setActiveVideo] = useState(0);
@@ -134,7 +132,8 @@ const DigitalGirlsSanctuary = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF] text-white relative overflow-hidden">
+    <div className="bg_color">
+     <div className="min-h-screen bg  text-white relative overflow-hidden">
       {/* Custom cursor - hidden on mobile */}
       {!isMobile && (
         <div
@@ -179,10 +178,12 @@ const DigitalGirlsSanctuary = () => {
             ></div>
           </div>
           {/* logo2 */}
-          <div className="ml-9 max-[768px]:flex max-[768px]:items-center max-[768px]:justify-center max-[768px]:ml-0">
-            <Link to={"/"}>
-              <img src={logo} className="w-[180px] h-auto" alt="" />
-            </Link>
+          <div className="logobg">
+            <div className="ml-9 max-[768px]:flex max-[768px]:items-center max-[768px]:justify-center max-[768px]:ml-0">
+              <Link to={"/"}>
+                <img src={logo} className="w-[180px] h-auto" alt="" />
+              </Link>
+            </div>
           </div>
           <div
             className={`relative h- flex flex-col justify-center ${
@@ -204,6 +205,7 @@ const DigitalGirlsSanctuary = () => {
                   RAQAMLI
                 </span>
               </h1>
+
               <div className="relative">
                 <h2
                   className={`${
@@ -625,6 +627,7 @@ const DigitalGirlsSanctuary = () => {
           }
         }
       `}</style>
+    </div>
     </div>
   );
 };
